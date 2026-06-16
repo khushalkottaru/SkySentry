@@ -1,3 +1,5 @@
 research/
 
 *.pt
+
+__pycache__/
