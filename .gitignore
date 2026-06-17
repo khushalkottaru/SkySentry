@@ -3,3 +3,5 @@ research/
 *.pt
 
 __pycache__/
+
+samples/
