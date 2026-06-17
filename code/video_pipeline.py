@@ -30,6 +30,9 @@ def process_video(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     writer = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
+    if not writer.isOpened():
+        cap.release()
+        raise OSError(f"Cannot open video writer for: {output_path}")
 
     frame_index = 0
     total_detections = 0
