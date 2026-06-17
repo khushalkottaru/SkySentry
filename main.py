@@ -42,7 +42,7 @@ def main() -> None:
 
     profile = get_profile(args.profile)
 
-    print(f"SkySentry v1")
+    print("SkySentry v1")
     print(f"  Input   : {args.input}")
     print(f"  Output  : {output}")
     print(f"  Profile : {profile.name.upper()} — {profile.description}")
@@ -50,7 +50,7 @@ def main() -> None:
 
     summary = process_video(args.input, output, profile, show_progress=not args.quiet)
 
-    print(f"Done.")
+    print("Done.")
     print(f"  Frames processed : {summary['frames_processed']}")
     print(f"  Total detections : {summary['total_detections']}")
     print(f"  Output written   : {summary['output_path']}")
