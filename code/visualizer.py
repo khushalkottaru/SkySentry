@@ -26,8 +26,11 @@ def draw_detections(
 
         label = f"bird {det['confidence']:.2f}"
         (tw, th), baseline = cv2.getTextSize(label, _FONT, _FONT_SCALE, _THICKNESS)
-        cv2.rectangle(out, (x1, y1 - th - baseline - 4), (x1 + tw + 4, y1), _LABEL_BG, -1)
-        cv2.putText(out, label, (x1 + 2, y1 - baseline - 2), _FONT, _FONT_SCALE, _TEXT_COLOR, _THICKNESS)
+        label_h = th + baseline + 4
+        # Keep the label inside the frame: draw below the box if there's no room above it.
+        label_top = y1 - label_h if y1 - label_h >= 0 else y2
+        cv2.rectangle(out, (x1, label_top), (x1 + tw + 4, label_top + label_h), _LABEL_BG, -1)
+        cv2.putText(out, label, (x1 + 2, label_top + label_h - baseline - 2), _FONT, _FONT_SCALE, _TEXT_COLOR, _THICKNESS)
 
     _draw_hud(out, profile, len(detections), frame_index)
     return out
